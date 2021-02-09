@@ -52,7 +52,7 @@ public class ResponseUtility {
 		if(ex instanceof CustomGenericException) {
 			error.put("developerMessage", ((CustomGenericException) ex).getErrDebugMsg());
 		} else {
-			if(StringUtils.isEmpty(ex.getMessage()))
+			if(!StringUtils.isEmpty(ex.getMessage()))
 				error.put("developerMessage", ex.getMessage());
 		}
 		apiResponse.setError(error);

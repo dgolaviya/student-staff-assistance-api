@@ -17,4 +17,7 @@ public interface IUserRepo extends JpaRepository<UserModel, String>{
 	@Query("SELECT user FROM UserModel user where user.emailId = :emailId or user.userName = :userName")
 	Optional<UserModel> findByEmailIdOrUserName(String emailId, String userName);
 
+	@Query("SELECT user FROM UserModel user where user.emailId = :emailId or user.mobileNo = :mobileNo")
+	Optional<UserModel> findByEmailIdOrMobileNo(String emailId, Long mobileNo);
+
 }

@@ -13,6 +13,8 @@ public interface IUserService {
 
 	public UserModel insertUser(UserModel user) throws CustomGenericException;
 
+	public UserModel registerUser(UserModel user) throws CustomGenericException;
+
 	public UserModel updateUser(String userId, UserModel user) throws CustomGenericException;
 
 	public void deleteUser(String userId) throws CustomGenericException;

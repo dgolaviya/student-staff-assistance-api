@@ -32,7 +32,7 @@ public class UserController extends ResponseUtility {
 	@Autowired
 	IUserAvatarImageService userAvatarImageService;
 
-	@GetMapping
+	@GetMapping("/list")
 	public ResponseEntity<ApiResponse> fetchAllUsers() {
 		return buildSuccessResponse(userService.fetchAllUsers());
 	}
@@ -40,6 +40,11 @@ public class UserController extends ResponseUtility {
 	@PostMapping
 	public ResponseEntity<ApiResponse> insertUser(@Valid @RequestBody UserModel user) throws CustomGenericException {
 		return buildSuccessResponse(userService.insertUser(user));
+	}
+
+	@PostMapping("/register")
+	public ResponseEntity<ApiResponse> registerUser(@Valid @RequestBody UserModel user) throws CustomGenericException {
+		return buildSuccessResponse(userService.registerUser(user));
 	}
 	
 	@GetMapping("/login")
