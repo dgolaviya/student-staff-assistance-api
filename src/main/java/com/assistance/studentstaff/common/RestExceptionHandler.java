@@ -20,18 +20,18 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	@Override
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		return responseUtility.buildErrorResponse(ex, HttpStatus.BAD_REQUEST, "Parameter Values are invalid");
+		return responseUtility.buildErrorResponse(ex, HttpStatus.BAD_REQUEST, ex.getMessage());
 	}
 
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		return responseUtility.buildErrorResponse(ex, HttpStatus.BAD_REQUEST, "Correct the invalid input field");
+		return responseUtility.buildErrorResponse(ex, HttpStatus.BAD_REQUEST, ex.getMessage());
 	}
 
 	@ExceptionHandler(NonUniqueResultException.class)
 	public ResponseEntity<Object> handleNonUniqueResultException(Exception ex, WebRequest request) {
-		return responseUtility.buildErrorResponse(ex, HttpStatus.INTERNAL_SERVER_ERROR, "Unexpected Error");
+		return responseUtility.buildErrorResponse(ex, HttpStatus.BAD_REQUEST, ex.getMessage());
 	}
 
 	@ExceptionHandler(CustomGenericException.class)
@@ -42,6 +42,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) {
-		return responseUtility.buildErrorResponse(ex, HttpStatus.INTERNAL_SERVER_ERROR, "Unexpected Error");
+		return responseUtility.buildErrorResponse(ex, HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
 	}
 }

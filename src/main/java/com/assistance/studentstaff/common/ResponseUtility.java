@@ -53,7 +53,7 @@ public class ResponseUtility {
 			error.put("developerMessage", ((CustomGenericException) ex).getErrDebugMsg());
 		} else {
 			if(!StringUtils.isEmpty(ex.getMessage()))
-				error.put("developerMessage", ex.getMessage());
+				error.put("developerMessage", ex.toString());
 		}
 		apiResponse.setError(error);
 	}
